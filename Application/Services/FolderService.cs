@@ -12,10 +12,9 @@ namespace Application.Services
         private readonly NoteRepository _noteRepository;
         private string _FolderPath;
 
-        public FolderService(NoteRepository noteRepository, string folderPath)
+        public FolderService(NoteRepository noteRepository)
         {
             _noteRepository = noteRepository;
-            _FolderPath = folderPath;
         }
 
         public BaseDto CreateFolderAndFile(string folderName)
@@ -54,9 +53,9 @@ namespace Application.Services
         }
         public BaseDto Move(Guid userID, string tittle, string folderName)
         {
-            var note = _noteRepository.GetNote(tittle, userID);
+            var note = _noteRepository.GetNote(tittle.ToUpper(), userID);
 
-            _FolderPath = @$"{_jsonPath}\{folderName}";
+            _FolderPath = @$"{_jsonPath}\{folderName}.json";
 
             Add(note);
 

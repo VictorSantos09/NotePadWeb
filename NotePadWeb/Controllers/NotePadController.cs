@@ -27,7 +27,7 @@ namespace NotePadWeb.Controllers
         [Route("DeleteNote")]
         public IActionResult Delete(DeleteNoteDto deleteDto)
         {
-            var result = _notePadService.RemoveNote(deleteDto.Tittle, deleteDto.UserID, deleteDto.Confirmed);
+            var result = _notePadService.RemoveNote(deleteDto.Tittle.ToUpper(), deleteDto.UserID, deleteDto.Confirmed);
 
             return StatusCode(result._StatusCode, new { Message = result._Message });
         }

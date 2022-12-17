@@ -56,7 +56,10 @@ namespace Application.Services
             if (!confirmed)
                 return new BaseDto(200, "Solicitação cancelada");
 
-            var note = _noteRepository.GetNote(tittle, userID);
+            var note = _noteRepository.GetNote(tittle.ToUpper(), userID);
+
+            if (note == null)
+                return new BaseDto(404, "Anotação não encontrada");
 
             _noteRepository.Remove(note.Id);
 

@@ -32,7 +32,7 @@ namespace NotePadWeb.Controllers
         {
             var result = _login.LoginProcess(loginDto.Email, loginDto.Password);
 
-            return StatusCode(result._StatusCode, result._Data == null ? new { Message = result._Message } : result._Data);
+            return StatusCode(result._StatusCode, result._Data == null ? new { Message = result._Message } : new { Id = result._Data });
         }
     }
 }

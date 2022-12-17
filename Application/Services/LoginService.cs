@@ -17,7 +17,7 @@ namespace Application.Services
             if (!IsExistentUser(email, password))
                 return new BaseDto(404, "Usuario não encontrado");
 
-            var user = _userRepository.GetByEmail(email, password);
+            var user = _userRepository.GetByEmail(email.ToUpper(), password);
 
             return new BaseDto(200, user.Id);
 
