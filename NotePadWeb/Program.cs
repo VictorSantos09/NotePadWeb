@@ -12,9 +12,12 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddSingleton<UserRepository>();
+builder.Services.AddSingleton<NoteRepository>();
 
-builder.Services.AddSingleton<RegisterService>();
+builder.Services.AddSingleton<FolderService>();
 builder.Services.AddSingleton<LoginService>();
+builder.Services.AddSingleton<NotePadService>();
+builder.Services.AddSingleton<RegisterService>();
 
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
