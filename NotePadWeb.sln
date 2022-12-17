@@ -3,25 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotePadWeb", "NotePadWeb\NotePadWeb.csproj", "{E9ADA837-FF62-493B-A1CF-5066FB99C3D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotePadWeb", "NotePadWeb\NotePadWeb.csproj", "{E9ADA837-FF62-493B-A1CF-5066FB99C3D4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{885A71A6-4C51-4650-9E83-45F58733726D} = {885A71A6-4C51-4650-9E83-45F58733726D}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{420C3D3F-BCB5-45AA-972D-BB8EBA0E846E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{420C3D3F-BCB5-45AA-972D-BB8EBA0E846E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{885A71A6-4C51-4650-9E83-45F58733726D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{885A71A6-4C51-4650-9E83-45F58733726D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{420C3D3F-BCB5-45AA-972D-BB8EBA0E846E} = {420C3D3F-BCB5-45AA-972D-BB8EBA0E846E}
 		{B9A0FBA5-397F-4967-9907-883EF197FCCB} = {B9A0FBA5-397F-4967-9907-883EF197FCCB}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{B9A0FBA5-397F-4967-9907-883EF197FCCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{B9A0FBA5-397F-4967-9907-883EF197FCCB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{420C3D3F-BCB5-45AA-972D-BB8EBA0E846E} = {420C3D3F-BCB5-45AA-972D-BB8EBA0E846E}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crosscutting", "Crosscutting\Crosscutting.csproj", "{93069295-C204-45E1-9694-C9F70014B518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +43,6 @@ Global
 		{B9A0FBA5-397F-4967-9907-883EF197FCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A0FBA5-397F-4967-9907-883EF197FCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A0FBA5-397F-4967-9907-883EF197FCCB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93069295-C204-45E1-9694-C9F70014B518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93069295-C204-45E1-9694-C9F70014B518}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93069295-C204-45E1-9694-C9F70014B518}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93069295-C204-45E1-9694-C9F70014B518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

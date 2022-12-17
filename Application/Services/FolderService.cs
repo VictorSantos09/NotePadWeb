@@ -23,7 +23,8 @@ namespace Application.Services
 
             string fullJsonPath = Path.Combine(_jsonPath, folderName + ".json");
 
-            SaveToFile(folderName, fullJsonPath);
+
+            SaveToFile(folderName, fullJsonPath, new List<object>());
 
             return new BaseDto(200, "Nova pasta criada");
         }
@@ -44,13 +45,11 @@ namespace Application.Services
             }
         }
 
-        private void SaveToFile(string jsonFileName, string fullJsonPath)
+        private void SaveToFile(string jsonFileName, string fullJsonPath, List<object> entities)
         {
-            JsonTemplate template = new JsonTemplate();
-            template.Name = jsonFileName;
-
-            File.WriteAllText(fullJsonPath, Newtonsoft.Json.JsonConvert.SerializeObject(template));
+            File.WriteAllText(fullJsonPath, Newtonsoft.Json.JsonConvert.SerializeObject(entities));
         }
+
         public BaseDto Move(Guid userID, string tittle, string folderName)
         {
             var note = _noteRepository.GetNote(tittle.ToUpper(), userID);
@@ -61,6 +60,7 @@ namespace Application.Services
 
             return new BaseDto(200, $"Anotação movida para {folderName}");
         }
+
         private void Add(NoteEntity entity)
         {
             var list = GetAll();
@@ -70,6 +70,7 @@ namespace Application.Services
             string json = JsonSerializer.Serialize(list);
             File.WriteAllText(_FolderPath, json);
         }
+
         private List<NoteEntity> GetAll()
         {
             using (StreamReader r = new StreamReader(_FolderPath))
