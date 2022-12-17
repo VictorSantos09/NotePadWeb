@@ -15,7 +15,7 @@
             OwnerID = ownerID;
             Id = Guid.NewGuid();
             UpdateDate = updateDate;
-            Tittle = tittle;
+            Tittle = tittle.ToUpper();
         }
     }
 }

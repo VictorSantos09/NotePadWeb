@@ -12,5 +12,9 @@ namespace Repository.Repository
         {
             return GetAll().Find(x => x.Tittle == tittle && x.OwnerID == userID);
         }
+        public List<NoteEntity> GetAllFromUser(Guid userID)
+        {
+            return GetAll().FindAll(x => x.OwnerID == userID);
+        }
     }
 }
