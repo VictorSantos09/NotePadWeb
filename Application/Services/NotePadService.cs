@@ -43,9 +43,9 @@ namespace Application.Services
         }
         public BaseDto UpdateNote(string newText, Guid userID, string tittle)
         {
-            var newNote = new NoteEntity(newText, null, userID, DateTime.Today.Date, tittle);
-
-            var oldNote = _noteRepository.GetNote(tittle, userID);
+            var oldNote = _noteRepository.GetNote(tittle.ToUpper(), userID);
+            
+            var newNote = new NoteEntity(newText, oldNote.CreationDate, userID, DateTime.Today.Date, tittle);
 
             _noteRepository.Update(oldNote.Id, newNote);
 

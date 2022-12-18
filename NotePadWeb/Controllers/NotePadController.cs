@@ -39,5 +39,13 @@ namespace NotePadWeb.Controllers
 
             return StatusCode(result._StatusCode, result._Data == null ? new { Message = result._Message } : result._Data);
         }
+        [HttpPost]
+        [Route("UpdateNote")]
+        public IActionResult UpdateNote(UpdateNoteDto noteDto)
+        {
+            var result = _notePadService.UpdateNote(noteDto.NewText, noteDto.UserID, noteDto.Tittle);
+
+            return StatusCode(result._StatusCode, new { Message = result._Message });
+        }
     }
 }
