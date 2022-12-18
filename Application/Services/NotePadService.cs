@@ -7,10 +7,12 @@ namespace Application.Services
     public class NotePadService
     {
         private readonly NoteRepository _noteRepository;
+        private readonly UserRepository _userRepository;
 
-        public NotePadService(NoteRepository noteRepository)
+        public NotePadService(NoteRepository noteRepository, UserRepository userRepository)
         {
             _noteRepository = noteRepository;
+            _userRepository = userRepository;
         }
 
         private bool HasExistentNoteTittle(Guid userID, string tittle)
@@ -24,6 +26,9 @@ namespace Application.Services
 
         public BaseDto CreateNote(string text, string tittle, Guid userID)
         {
+            if (!_userRepository.GetAll().Exists(x => x.Id == userID))
+                return new BaseDto(406, "Usuario não registrado");
+
             if (HasExistentNoteTittle(userID, tittle))
             {
                 var newTittle = RenameExistNoteTittle(tittle);
@@ -44,7 +49,10 @@ namespace Application.Services
         public BaseDto UpdateNote(string newText, Guid userID, string tittle)
         {
             var oldNote = _noteRepository.GetNote(tittle.ToUpper(), userID);
-            
+
+            if (oldNote == null)
+                return new BaseDto(404, "Anotação não encontrada");
+
             var newNote = new NoteEntity(newText, oldNote.CreationDate, userID, DateTime.Today.Date, tittle);
 
             _noteRepository.Update(oldNote.Id, newNote);
@@ -67,6 +75,9 @@ namespace Application.Services
         }
         public BaseDto GetNotes(Guid userID)
         {
+            if (!_userRepository.GetAll().Exists(x => x.Id == userID))
+                return new BaseDto(404, "Usuario não encontrado");
+
             var notes = _noteRepository.GetAllFromUser(userID);
 
             if (notes.Count == 0)

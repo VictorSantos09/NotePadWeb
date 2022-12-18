@@ -1,6 +1,6 @@
 ﻿using Application.Dto;
+using Crosscutting.Validator;
 using Domain.Entities;
-using Repository;
 using Repository.Repository;
 using System.Text.Json;
 
@@ -8,8 +8,8 @@ namespace Application.Services
 {
     public class FolderService
     {
-        private readonly string _jsonPath = $@"{Directory.GetCurrentDirectory()}\Folders";
         private readonly NoteRepository _noteRepository;
+        private readonly string _jsonPath = $@"{Directory.GetCurrentDirectory()}\Folders";
         private string _FolderPath;
 
         public FolderService(NoteRepository noteRepository)
@@ -19,10 +19,12 @@ namespace Application.Services
 
         public BaseDto CreateFolderAndFile(string folderName)
         {
+            if (!InputValidator.IsValidText(folderName))
+                return new BaseDto(406, "Nome inválido");
+
             CreateBaseDirectory(_jsonPath);
 
             string fullJsonPath = Path.Combine(_jsonPath, folderName + ".json");
-
 
             SaveToFile(folderName, fullJsonPath, new List<object>());
 
@@ -53,6 +55,9 @@ namespace Application.Services
         public BaseDto Move(Guid userID, string tittle, string folderName)
         {
             var note = _noteRepository.GetNote(tittle.ToUpper(), userID);
+
+            if (note == null)
+                return new BaseDto(404, "Anotação não encontrada");
 
             _FolderPath = @$"{_jsonPath}\{folderName}.json";
 

@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using EasyBankWeb.Repository;
 
 namespace Repository.Repository
 {

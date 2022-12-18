@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using System.Text.Json;
 
-namespace EasyBankWeb.Repository
+namespace Repository.Repository
 {
     public class BaseRepository<T> where T : BaseEntity
     {
